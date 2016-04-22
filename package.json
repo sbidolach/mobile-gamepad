@@ -1,0 +1,11 @@
+{
+  "name": "mobile-gamepad",
+  "version": "0.0.1",
+  "description": "Mobile wifi gamepad for RetroPie",
+  "author": "contact@softwarelondon.net",
+  "dependencies": {
+    "express": "^4.13.4",
+    "uinput": "0.0.4"
+  },
+  "devDependencies": {}
+}
