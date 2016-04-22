@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         livereload: true
       },
       public: {
-        files: ['client/public/**/*'],
+        files: ['public/**/*'],
         tasks: ['copy:public']
       },
       client: {

@@ -5,6 +5,9 @@
   "author": "contact@softwarelondon.net",
   "dependencies": {
     "express": "^4.13.4",
+    "grunt": "^1.0.1",
+    "http": "0.0.0",
+    "socket.io": "^1.4.5",
     "uinput": "0.0.4"
   },
   "devDependencies": {
