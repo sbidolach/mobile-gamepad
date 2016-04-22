@@ -1,10 +1,12 @@
+var config = require('./config/config');
+
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     open : {
       dev : {
-        path: 'http://127.0.0.1:9000/'
+        path: 'http://127.0.0.1:' + process.env.PORT
       }
     },
 
@@ -15,6 +17,10 @@ module.exports = function(grunt) {
       public: {
         files: ['client/public/**/*'],
         tasks: ['copy:public']
+      },
+      client: {
+        files: ['client/**/*'],
+        tasks: ['copy:client']
       },
       server: {
         files: ['config/config.js','server/*'],
@@ -28,7 +34,13 @@ module.exports = function(grunt) {
     copy: {
       public: {
         expand: true,
-        cwd: 'client/public/',
+        cwd: 'public/',
+        src: ['**'],
+        dest: 'dist/public/'
+      },
+      client: {
+        expand: true,
+        cwd: 'client/',
         src: ['**'],
         dest: 'dist/public/'
       }
@@ -41,7 +53,7 @@ module.exports = function(grunt) {
     express: {
       dev: {
         options: {
-          port: 9000,
+          port: config.port,
           script: 'server/server.js',
           background: true
         }
@@ -59,7 +71,11 @@ module.exports = function(grunt) {
     'clean', 'copy'
   ]);
 
-  grunt.registerTask('server', [
+  grunt.registerTask('production', [
+    'default', 'express', 'watch'
+  ]);
+
+  grunt.registerTask('development', [
     'default', 'express', 'open:dev', 'watch'
   ]);
 
