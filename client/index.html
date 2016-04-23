@@ -3,18 +3,29 @@
 
 <head>
   <title>Mobile wifi gamepad for RetroPie</title>
+
+  <link rel="stylesheet" href="css/gamepad.css">
+
 </head>
 
 <body>
 
-  <div>Mobile GamePad</div>
+  <h1>Mobile GamePad</h1>
 
+  <div>
+    <button id="up">Up</button>
+  </div>
+  <div>
+    <button id="left">Left</button>
+    <button id="right">Right</button>
+  </div>
+  <div>
+    <button id="down">Down</button>
+  </div>
+
+  <script src="/js/jquery-2.2.3.min.js"></script>
   <script src="/js/socket.io-1.4.5.js"></script>
-  <script>
-    var socket = io();
-    socket.emit('hello', 'add new input');
-  </script>
+  <script src="/js/gamepad.js"></script>  
 
 </body>
-
 </html>

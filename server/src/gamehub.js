@@ -1,4 +1,5 @@
 var config = require('../../config/config');
+var gameController = require('./gamepad');
 
 var gamehub = function(){
 
@@ -8,6 +9,7 @@ var gamehub = function(){
     // disconnect input devide to hub
     disconnect: function(inputId){
       if(this.gamepads[inputId] !== undefined){
+        this.gamepads[inputId].disconnect();
         this.gamepads[inputId] = undefined;
       }
       return null;
@@ -18,7 +20,8 @@ var gamehub = function(){
         /// find free slot
         for(var i=1; i <= config.padLimit; i++){
           if(this.gamepads[i] === undefined){
-            this.gamepads[i] = 'install gamepad';
+            this.gamepads[i] = new gameController(i);
+            this.gamepads[i].connect();
             return callback(i);
           }
         }
@@ -30,9 +33,10 @@ var gamehub = function(){
       }
     }.bind(this),
     sendEvent: function(inputId, event){
+      this.gamepads[inputId].sendEvent(event);
       return null;
     }.bind(this)
-  };
+  }
 
 };
 

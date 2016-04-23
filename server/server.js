@@ -15,8 +15,11 @@ io.on('connection', function(socket) {
   console.log('gamepad connected');
 
   socket.on('disconnect', function() {
-    console.log('goodbye input -> ' + socket.inputId);
-    gamehub.disconnect(socket.inputId);
+    if(socket.inputId !== undefined){
+      console.log('goodbye input -> ' + socket.inputId);
+      gamehub.disconnect(socket.inputId);
+    }
+    console.log('gamepad disconnected');
     return null;
   });
 
@@ -34,10 +37,10 @@ io.on('connection', function(socket) {
     return null;
   });
 
-  socket.on('event', function(data) {
-    console.log('event -> \'\' input -> ' + socket.inputId);
-    if(socket.inputId !== undefined && data){
-      gamehub.sendEvent(socket.inputId, data);
+  socket.on('event', function(code) {
+    console.log('event -> ' + code + ' input -> ' + socket.inputId);
+    if(socket.inputId !== undefined && code){
+      gamehub.sendEvent(socket.inputId, code);
     }
     return null;
   });

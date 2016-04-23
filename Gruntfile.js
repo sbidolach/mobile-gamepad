@@ -4,6 +4,11 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    debug: {
+      options: {
+        open: false // do not open node-inspector in Chrome automatically
+      }
+    },
     open : {
       dev : {
         path: 'http://127.0.0.1:' + process.env.PORT
@@ -61,6 +66,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-debug-task');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -71,7 +77,7 @@ module.exports = function(grunt) {
     'clean', 'copy'
   ]);
 
-  grunt.registerTask('production', [
+  grunt.registerTask('start', [
     'default', 'express', 'watch'
   ]);
 
