@@ -10,22 +10,24 @@
 
 <body>
 
-  <h1>Mobile GamePad</h1>
+  <div class="zone_button_lt semi active"><h1>button lt</h1></div>
+  <div class="zone_button_rt static active"><h1>button rt</h1></div>
+  <div class="zone_joystick dynamic active"><h1>dynamic</h1></div>
+  <div class="zone_buttons_menu_start tide active"><h1>start</h1></div>
+  <div class="zone_buttons_right storm active">
+    <a href="#" id="btnA" data-code="0x130" class="round-button delayed btn">A</a>
+    <a href="#" id="btnB" data-code="0x131" class="round-button delayed btn">B</a>
+    <a href="#" id="btnX" data-code="0x133" class="round-button delayed btn">X</a>
+    <a href="#" id="btnY" data-code="0x134" class="round-button delayed btn">Y</a>
+    <h1>buttons</h1>
+  </div>
 
-  <div>
-    <button id="up">Up</button>
-  </div>
-  <div>
-    <button id="left">Left</button>
-    <button id="right">Right</button>
-  </div>
-  <div>
-    <button id="down">Down</button>
-  </div>
+  <!-- <canvas id="sketchpad" width="400" height="300"></canvas> -->
 
   <script src="/js/jquery-2.2.3.min.js"></script>
   <script src="/js/socket.io-1.4.5.js"></script>
-  <script src="/js/gamepad.js"></script>  
+  <script src="/js/nipplejs.min.js"></script>
+  <script src="/js/client.js"></script>
 
 </body>
 </html>
