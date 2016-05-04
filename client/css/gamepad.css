@@ -37,15 +37,7 @@ h1 {position: absolute; padding: 10px 10px; margin: 0; color: white; right: 0; b
     font-size:40px;
     font-weight:bold;
 }
-.round-button:active {
-    background: #30588e;
-}
 
-.delayed {
-  transition: all 0.2s;
-  transition-delay: 300ms;
-}
-
-.delayed:active {
-  transition: none;
-}
+.round-button:active {background: #30588e;}
+.delayed {transition: all 0.2s; transition-delay: 300ms;}
+.delayed:active {transition: none;}

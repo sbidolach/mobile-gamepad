@@ -38,20 +38,15 @@ $(window).load(function() {
       position: {left: '50%', top: '50%'},
       multitouch: true
     })
-    .on('start end', function(evt, data) {
-      //dump(evt.type);
-      //debug(data);
-    }).on('move', function(evt, data) {
-      //debug(data);
+    // .on('start end', function(evt, data) {
+    // })
+    // .on('move', function(evt, data) {
     }).on('dir:up plain:up dir:left plain:left dir:down ' +
       'plain:down dir:right plain:right', function(evt, data) {
-        console.log(evt);
-        //dump(evt.type);
-      }
-    ).on('pressure', function(evt, data) {
-      //debug({
-      //  pressure: data
-      //});
+        socket.emit("event", {type: 0x03, code: 0x00, value: data.position.x});
+        socket.emit("event", {type: 0x03, code: 0x01, value: data.position.y});
+    // })
+    // .on('pressure', function(evt, data) {
     });
 
 });
