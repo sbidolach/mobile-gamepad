@@ -37,7 +37,7 @@ $(window).load(function() {
       color: 'black',
       position: {left: '50%', top: '50%'},
       multitouch: true
-    })
+    // })
     // .on('start end', function(evt, data) {
     // })
     // .on('move', function(evt, data) {
