@@ -23,16 +23,18 @@ $(window).load(function() {
           .off("touchstart touchend")
           .on("touchstart", function(event) {
             socket.emit("event", {type: 0x01, code: $(this).data("code"), value: 1});
+            $(this).addClass("active");
             // hapticCallback();
           })
           .on("touchend", function(event) {
             socket.emit("event", {type: 0x01, code: $(this).data("code"), value: 0});
+            $(this).removeClass("active");
           });
       });
 
     // Create Joystick
     nipplejs.create({
-      zone: document.querySelector('.zone_joystick.dynamic'),
+      zone: document.querySelector('.joystick'),
       mode: 'static',
       color: 'black',
       position: {left: '50%', top: '50%'},

@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  padding: 0;
+  /*max-width: 1024px;*/
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+h1 {
+  position: absolute;
+  padding: 10px 10px;
+  margin: 0;
+  color: white;
+  right: 0;
+  bottom: 0;
+  font-size: 14px
+}
+
+.button_lt {position: absolute;width: 50%;height: 30%;background: rgba(0, 0, 255, 0.3);}
+.button_rt {position: absolute;width: 50%;height: 30%;left:50%; background: rgba(0, 255, 255, 0.3);}
+.joystick {position: absolute;width: 40%;height: 70%;top:30%;background: rgba(0, 255, 255, 0.3);}
+.buttons_menu_start {position: absolute;width: 20%;height: 70%;top:30%;left:40%;}
+.button_select{background: rgba(0, 255, 114, 0.3);height: 50%;position: absolute;width: 100%;}
+.button_start{background: rgb(165, 174, 193);height: 50%;position: absolute;width: 100%;top:50%}
+.buttons_right {position: absolute;width: 40%;height: 70%;top:30%;left:60%;}
+.button_y{background: green;height: 50%; width: 50%; position: absolute;}
+.button_x{background: blue;height: 50%; width: 50%; left: 50%; position: absolute;}
+.button_b{background: yellow;height: 50%; width: 50%; top: 50%; position: absolute;}
+.button_a{background: red;height: 50%; width: 50%; top: 50%; left: 50%; position: absolute;}
+
+.active{background: black}
+
+#warning-message { display: none; }
+@media only screen and (orientation:portrait){
+    #wrapper { display:none; }
+    #warning-message { display:block; }
+}
+@media only screen and (orientation:landscape){
+    #warning-message { display:none; }
+}

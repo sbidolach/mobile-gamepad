@@ -3,43 +3,31 @@
 
 <head>
   <title>Mobile wifi gamepad for RetroPie</title>
-
-  <link rel="stylesheet" href="css/gamepad.css">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="css/client.css">
 </head>
 
 <body>
 
-  <div class="zone_button_lt semi active">
-    <a href="#" id="btnLT" data-code="0x136" class="round-button delayed btn">LT</a>
-    <h1>button lt</h1>
-  </div>
-  <div class="zone_button_rt static active">
-    <a href="#" id="btnRT" data-code="0x137" class="round-button delayed btn">RT</a>
-    <h1>button rt</h1>
-  </div>
-  <div class="zone_joystick dynamic active"><h1>dynamic</h1></div>
-  <div class="zone_buttons_menu_start tide active">
-    <div class="group">
-      <a href="#" id="btnSELECT" data-code="0x13a" class="round-button delayed btn">SELECT</a>
-      <a href="#" id="btnSTART" data-code="0x13b" class="round-button delayed btn">START</a>
+  <div id="wrapper">
+    <div class="button_lt btn" id="btnLT" data-code="0x136"><h1>button lt</h1></div>
+    <div class="button_rt btn" id="btnRT" data-code="0x137"><h1>button rt</h1></div>
+    <div class="joystick"><h1>joystick</h1></div>
+    <div class="buttons_menu_start">
+      <div class="button_select btn" id="btnSELECT" data-code="0x13a"><h1>select</h1></div>
+      <div class="button_start btn" id="btnSTART" data-code="0x13b"><h1>start</h1></div>
     </div>
-    <h1>start</h1>
-  </div>
-  <div class="zone_buttons_right storm active">
-
-    <div class="group">
-      <a href="#" id="btnA" data-code="0x130" class="round-button delayed btn">A</a>
-      <a href="#" id="btnB" data-code="0x131" class="round-button delayed btn">B</a>
-      <br/>
-      <a href="#" id="btnX" data-code="0x133" class="round-button delayed btn">X</a>
-      <a href="#" id="btnY" data-code="0x134" class="round-button delayed btn">Y</a>
+    <div class="buttons_right">
+      <div class="button_x btn" id="btnX" data-code="0x133"><h1>button x</h1></div>
+      <div class="button_y btn" id="btnY" data-code="0x134"><h1>button y</h1></div>
+      <div class="button_a btn" id="btnA" data-code="0x130"><h1>button a</h1></div>
+      <div class="button_b btn" id="btnB" data-code="0x131"><h1>button b</h1></div>
     </div>
+</div>
 
-    <h1>buttons</h1>
-  </div>
-
-  <!-- <canvas id="sketchpad" width="400" height="300"></canvas> -->
+<div id="warning-message">
+    this gamepad is only viewable in landscape mode
+</div>
 
   <script src="/js/jquery-2.2.3.min.js"></script>
   <script src="/js/socket.io-1.4.5.js"></script>
