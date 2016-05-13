@@ -4,11 +4,13 @@ Mobile Game Controller for RetroPi
 
 # TODO
 
-- Send event between client and server (joystick, A, B, X, Y, Select, Start, LT, RT, F4)
-- Add RetroPi controller configuration
+- Send event between client and server (joystick, A, B, X, Y, Select, Start, LT, RT, F4) [In progress]
+- Add RetroPi controller configuration [In progress]
+- Create user-friendly layout for controller [In progress]
+- Display message when constoller is disconnected [Next]
+- Display gamepage number (max 4 pads) [Next]
 - Add simple KODI or other installation package
 - TDD
-- Create user-friendly layout for controller
 - Add second joystick to move mouse (for Quake, etc.)
 - Simulate mouse by moving mobile phone
 
