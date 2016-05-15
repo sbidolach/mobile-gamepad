@@ -102,7 +102,6 @@ var gamepad = function(inputId) {
         console.log('type: ' + type);
         console.log('code: ' + code);
         console.log('value: ' + value);
-        console.log('buffer: ' + ev);
         console.log('###############');
 
         var ev_end = new Buffer(24);
