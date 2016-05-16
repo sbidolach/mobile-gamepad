@@ -14,7 +14,7 @@ $(window).load(function() {
 
     // HAPTIC CALLBACK METHOD
     navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
-    var hapticCallback = function () {
+    var hapticCallback = function() {
         if (navigator.vibrate) {
             navigator.vibrate(1);
         }
@@ -50,45 +50,39 @@ $(window).load(function() {
                 });
         });
 
-    setDirection = function(event, type, value) {
+    sendEvent = function(type, code, value) {
+        socket.emit("event", {
+            type: type,
+            code: code,
+            value: value
+        });
+    }
 
+    setDirection = function(event) {
         if (event) {
-            var remoteEvent = null;
             switch (event) {
                 case "dir:left":
-                    remoteEvent = 0x222;
+                    sendEvent(0x03, 0x00, 0);
+                    sendEvent(0x03, 0x01, 127);
                     break;
                 case "dir:right":
-                    remoteEvent = 0x223;
+                    sendEvent(0x03, 0x00, 255);
+                    sendEvent(0x03, 0x01, 127);
                     break;
                 case "dir:up":
-                    remoteEvent = 0x220;
+                    sendEvent(0x03, 0x00, 127);
+                    sendEvent(0x03, 0x01, 0);
                     break;
                 case "dir:down":
-                    remoteEvent = 0x221;
+                    sendEvent(0x03, 0x00, 127);
+                    sendEvent(0x03, 0x01, 255);
                     break;
-            }
-
-            if (remoteEvent) {
-                // console.log(type + ';' + event + ';' + value);
-
-                socket.emit("event", {
-                    type: type,
-                    code: remoteEvent,
-                    value: value
-                });
-
-                if (value !== 0) {
-                    prevEvent = event;
-                } else {
-                    prevEvent = null;
-                }
+                default:
+                    sendEvent(0x03, 0x00, 127);
+                    sendEvent(0x03, 0x01, 127);
             }
         }
-
     };
-
-    var prevEvent;
 
     // Create Joystick
     nipplejs.create({
@@ -103,20 +97,11 @@ $(window).load(function() {
         })
         // start end
         .on('end', function(evt, data) {
-            setDirection(prevEvent, 0x01, 0);
-
-            // })
-            // .on('move', function(evt, data) {
-            // })
-
-        // dir:up plain:up dir:left plain:left dir:down plain:down dir:right plain:right
+            // set joystick to default position
+            setDirection('end');
+            // dir:up plain:up dir:left plain:left dir:down plain:down dir:right plain:right || move
         }).on('dir:up dir:left dir:down dir:right ', function(evt, data) {
-
-            if (evt.type !== prevEvent) {
-                setDirection(prevEvent, 0x01, 0);
-                setDirection(evt.type, 0x01, 1);
-            }
-
+            setDirection(evt.type);
         })
         .on('pressure', function(evt, data) {
             console.log('pressure');
