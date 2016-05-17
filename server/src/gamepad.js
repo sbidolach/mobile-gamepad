@@ -99,34 +99,46 @@ var gamepad = function(inputId) {
 
             if (this.fd) {
 
-                var ev = new Buffer(24);
-                ev.fill(0);
+                console.log(event);
+                
+                var input_event = Struct()
+                    .struct('time', Struct()
+                        .word64Sle('tv_sec')
+                        .word64Sle('tv_usec')
+                    )
+                    .word16Ule('type')
+                    .word16Ule('code')
+                    .word32Sle('value');
 
-                var tv_sec = Math.round(Date.now() / 1000),
-                    tv_usec = Math.round(Date.now() % 1000 * 1000),
-                    type = event.type, // uinput.EV_KEY
-                    code = event.code, // ABS_X,
-                    value = event.value; // 1
+                input_event.allocate();
+                var ev_buffer = input_event.buffer();
+                var ev = input_event.fields;
+                ev.type = event.type;
+                ev.code = event.code;
+                ev.value = event.value;
+                ev.time.tv_sec = Math.round(Date.now() / 1000);
+                ev.time.tv_usec = Math.round(Date.now() % 1000 * 1000);
 
-                ev.writeInt32LE(tv_sec, 0);
-                ev.writeInt32LE(tv_usec, 8);
-                ev.writeInt16LE(type, 16);
-                ev.writeInt16LE(code, 18);
-                ev.writeInt32LE(value, 20);
+                var input_event_end = Struct()
+                    .struct('time', Struct()
+                        .word64Sle('tv_sec')
+                        .word64Sle('tv_usec')
+                    )
+                    .word16Ule('type')
+                    .word16Ule('code')
+                    .word32Sle('value');
 
-                console.log('type: ' + type);
-                console.log('code: ' + code);
-                console.log('value: ' + value);
-                console.log('###############');
+                input_event_end.allocate();
+                var ev_end_buffer = input_event_end.buffer();
+                var ev_end = input_event_end.fields;
+                ev_end.type = 0;
+                ev_end.code = 0;
+                ev_end.value = 0;
+                ev_end.time.tv_sec = Math.round(Date.now() / 1000);
+                ev_end.time.tv_usec = Math.round(Date.now() % 1000 * 1000);
 
-                var ev_end = new Buffer(24);
-                ev_end.fill(0);
-
-                ev_end.writeInt32LE(tv_sec, 0);
-                ev_end.writeInt32LE(tv_usec, 8);
-
-                fs.writeSync(this.fd, ev, 0, ev.length, null);
-                fs.writeSync(this.fd, ev_end, 0, ev_end.length, null);
+                fs.writeSync(this.fd, ev_buffer, 0, ev_buffer.length, null);
+                fs.writeSync(this.fd, ev_end_buffer, 0, ev_end_buffer.length, null);
 
                 return null;
             }
