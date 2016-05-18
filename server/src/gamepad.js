@@ -68,10 +68,9 @@ var gamepad = function(inputId) {
 
                     uidev.name = "MobileGamePad";
                     uidev.id.bustype = uinput.BUS_USB;
-                    uidev.id.vendor = 0x5432;
-                    uidev.id.product = 0x1515;
+                    uidev.id.vendor = 0x5;
+                    uidev.id.product = 0x5;
                     uidev.id.version = 1;
-                    //uidev.ff_effects_max = 255;
                     uidev.absmax[uinput.ABS_X] = 255;
                     uidev.absmin[uinput.ABS_X] = 0;
                     uidev.absfuzz[uinput.ABS_X] = 0;
@@ -100,11 +99,11 @@ var gamepad = function(inputId) {
             if (this.fd) {
 
                 console.log(event);
-                
+
                 var input_event = Struct()
                     .struct('time', Struct()
-                        .word64Sle('tv_sec')
-                        .word64Sle('tv_usec')
+                        .word32Sle('tv_sec')
+                        .word32Sle('tv_usec')
                     )
                     .word16Ule('type')
                     .word16Ule('code')
@@ -113,6 +112,7 @@ var gamepad = function(inputId) {
                 input_event.allocate();
                 var ev_buffer = input_event.buffer();
                 var ev = input_event.fields;
+                ev_buffer.fill(0);
                 ev.type = event.type;
                 ev.code = event.code;
                 ev.value = event.value;
@@ -121,8 +121,8 @@ var gamepad = function(inputId) {
 
                 var input_event_end = Struct()
                     .struct('time', Struct()
-                        .word64Sle('tv_sec')
-                        .word64Sle('tv_usec')
+                        .word32Sle('tv_sec')
+                        .word32Sle('tv_usec')
                     )
                     .word16Ule('type')
                     .word16Ule('code')
@@ -131,6 +131,7 @@ var gamepad = function(inputId) {
                 input_event_end.allocate();
                 var ev_end_buffer = input_event_end.buffer();
                 var ev_end = input_event_end.fields;
+                ev_end_buffer.fill(0);
                 ev_end.type = 0;
                 ev_end.code = 0;
                 ev_end.value = 0;

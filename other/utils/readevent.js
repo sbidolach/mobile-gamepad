@@ -72,8 +72,8 @@ codes[ types.EV_KEY ] = {
 }
 
 stream.on('data', function( buffer ){
-	var tv_sec   = buffer.readInt32LE(0),
-		tv_usec  = buffer.readInt32LE(8),
+	var tv_sec   = buffer.readInt64LE(0),
+		tv_usec  = buffer.readInt64LE(8),
 		type     = buffer.readUInt16LE(16),
 		code     = buffer.readUInt16LE(18),
 		value    = buffer.readInt32LE(20);
