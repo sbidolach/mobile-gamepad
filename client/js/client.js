@@ -120,7 +120,7 @@ $(window).load(function() {
     };
 
     var prevEvent;
-    
+
     // Create Joystick
     nipplejs.create({
             zone: document.querySelector('.joystick'),
@@ -136,6 +136,7 @@ $(window).load(function() {
         .on('end', function(evt, data) {
             // set joystick to default position
             sendEventToServer('end');
+            prevEvent = evt.type;
             // dir:up plain:up dir:left plain:left dir:down plain:down dir:right plain:right || move
         }).on('move', function(evt, data) {
             var event = convertDegreeToEvent(data.angle.degree);
