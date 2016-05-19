@@ -56,30 +56,30 @@ $(window).load(function() {
             code: code,
             value: value
         });
-    }
+    };
 
-    getEventFromDegree = function(degree) {
-        if(degree >= -25 && degree <= 25) {
-            return 'left';
-        } else if (degree > 25 && degree < 65){
-            return 'left:up';
-        } else if (degree >= 65 && degree <= 115){
-            return 'up';
-        } else if (degree > 115 && degree < 155){
-            return 'right:up';
-        } else if (degree > -65 && degree < -25){
-            return 'left:down';
-        } else if (degree >= -115 && degree <= -65){
-            return 'down';
-        } else if (degree > -155 && degree < -115){
+    convertDegreeToEvent = function(degree) {
+        if (degree > 295 && degree < 335) {
             return 'right:down';
-        } else if(degree <= -155 || degree >= 155 ) {
+        } else if (degree >= 245 && degree <= 295) {
+            return 'down';
+        } else if (degree > 205 && degree < 245) {
+            return 'left:down';
+        } else if (degree >= 155 && degree <= 205) {
+            return 'left';
+        } else if (degree > 115 && degree < 155) {
+            return 'left:up';
+        } else if (degree >= 65 && degree <= 115) {
+            return 'up';
+        } else if (degree > 25 && degree < 65) {
+            return 'right:up';
+        } else if (degree <= 25 || degree >= 335) {
             return 'right';
         }
-    }
+    };
 
-
-    setDirection = function(event) {
+    sendEventToServer = function(event) {
+        console.log(event);
         switch (event) {
             case "left":
                 sendEvent(0x03, 0x00, 0);
@@ -119,6 +119,8 @@ $(window).load(function() {
         }
     };
 
+    var prevEvent;
+    
     // Create Joystick
     nipplejs.create({
             zone: document.querySelector('.joystick'),
@@ -133,10 +135,14 @@ $(window).load(function() {
         // start end
         .on('end', function(evt, data) {
             // set joystick to default position
-            setDirection('end');
+            sendEventToServer('end');
             // dir:up plain:up dir:left plain:left dir:down plain:down dir:right plain:right || move
-        }).on('dir:up dir:left dir:down dir:right', function(evt, data) {
-            return (data.angle.degree) ? setDirection(data.angle.degree) : null;
+        }).on('move', function(evt, data) {
+            var event = convertDegreeToEvent(data.angle.degree);
+            if (event !== prevEvent) {
+                sendEventToServer(event);
+                prevEvent = event;
+            }
         })
         .on('pressure', function(evt, data) {
             console.log('pressure');

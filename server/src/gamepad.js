@@ -112,7 +112,6 @@ var gamepad = function(inputId) {
                 input_event.allocate();
                 var ev_buffer = input_event.buffer();
                 var ev = input_event.fields;
-                ev_buffer.fill(0);
                 ev.type = event.type;
                 ev.code = event.code;
                 ev.value = event.value;
@@ -131,7 +130,6 @@ var gamepad = function(inputId) {
                 input_event_end.allocate();
                 var ev_end_buffer = input_event_end.buffer();
                 var ev_end = input_event_end.fields;
-                ev_end_buffer.fill(0);
                 ev_end.type = 0;
                 ev_end.code = 0;
                 ev_end.value = 0;
