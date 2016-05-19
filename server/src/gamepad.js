@@ -97,9 +97,7 @@ var gamepad = function(inputId) {
         sendEvent: function(event) {
 
             if (this.fd) {
-
-                console.log(event);
-
+                
                 var input_event = Struct()
                     .struct('time', Struct()
                         .word32Sle('tv_sec')

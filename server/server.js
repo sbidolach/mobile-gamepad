@@ -38,7 +38,7 @@ io.on('connection', function(socket) {
   });
 
   socket.on('event', function(code) {
-    console.log('event -> ' + code + ' input -> ' + socket.inputId);
+    //console.log('event -> ' + code + ' input -> ' + socket.inputId);
     if(socket.inputId !== undefined && code){
       gamehub.sendEvent(socket.inputId, code);
     }

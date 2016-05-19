@@ -29,6 +29,8 @@ $(window).load(function() {
         .on("hello", function(data) {
             var gamePadId = data.inputId;
 
+            $("#padText").html("GamePad<br>" + gamePadId);
+
             $(".btn")
                 .off("touchstart touchend")
                 .on("touchstart", function(event) {
