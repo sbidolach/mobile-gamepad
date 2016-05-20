@@ -43,7 +43,7 @@ http://[ip_address_raspberry_pi]:8888
 The below tool allows check gamepad connection and sending events
 
 ```bash
-sudo apd-get install input-utils
+sudo apt-get install input-utils
 ```
 
 * Dump out all the input devices and the associated details about the device.
@@ -64,20 +64,23 @@ sudo input-kbd [number]
 sudo input-events [number]
 ```
 
+---
+
 # TODO
 
-- Create user-friendly layout for controller [In progress]
-- Display message when constoller is disconnected [In progress]
-- Add simple KODI or other installation package
+- Create user-friendly layout for gamepad [In progress]
+- Display message when gamepad is disconnected [In progress]
+- Create bash script to automate installation
+- Add second joystick (Z Axis, Rotate Z Axis) to move mouse (for Quake, etc.) 
+- Simulate mouse (Z Axis, Rotate Z Axis) by moving mobile phone (for Quake, etc.) 
 - TDD
-- Add second joystick to move mouse (for Quake, etc.)
-- Simulate mouse by moving mobile phone
+- Add simple KODI or other installation package
 
 # Development
 
 - If you would like participate in innovate and interesting project, please contact with me.
 
-## Problem solving
+# Problem solving
 
 - No more battery problem in Pad
 - Keep your controll configuration online for different games
