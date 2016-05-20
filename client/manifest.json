@@ -1,6 +1,32 @@
 {
-  "name": "MobileGamePad",  
-  "start_url": "index.html",
-  "display": "standalone",
-  "orientation": "landscape"
+    "name": "MobileGamePad",
+    "start_url": "index.html",
+    "display": "standalone",
+    "orientation": "landscape",
+    "icons": [{
+        "src": "img/icon_joystick_26x26.png",
+        "sizes": "26x26",
+        "type": "image/png",
+        "density": "0.5"
+    }, {
+        "src": "img/icon_joystick_32x32.png",
+        "sizes": "32x32",
+        "type": "image/png",
+        "density": "0.75"
+    }, {
+        "src": "img/icon_joystick_48x48.png",
+        "sizes": "48x48",
+        "type": "image/png",
+        "density": "1.0"
+    }, {
+        "src": "img/icon_joystick_64x64.png",
+        "sizes": "64x64",
+        "type": "image/png",
+        "density": "1.5"
+    }, {
+        "src": "img/icon_joystick_128x128.png",
+        "sizes": "128x128",
+        "type": "image/png",
+        "density": "2.0"
+    }]
 }
