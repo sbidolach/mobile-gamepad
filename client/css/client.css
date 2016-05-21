@@ -1,48 +1,160 @@
 body {
-  margin: 0;
-  padding: 0;
-  /*max-width: 1024px;*/
-  margin-left: auto;
-  margin-right: auto;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    margin: 0;
+    padding: 0;
+    /*max-width: 1024px;*/
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: #34495e;
 }
-
 h1 {
-  position: absolute;
-  padding: 10px 10px;
-  margin: 0;
-  color: white;
-  right: 0;
-  bottom: 0;
-  font-size: 14px
+    position: absolute;
+    padding: 10px 10px;
+    margin: 0;
+    color: white;
+    right: 0;
+    bottom: 0;
+    font-size: 18px;
+    font-family: 'Russo One', sans-serif;
+    font-weight: bold;
+    text-shadow: 3px 3px 3px #4449EF;
 }
-
-.button_lt {position: absolute;width: 40%;height: 30%;background: rgba(0, 0, 255, 0.3);}
-.button_rt {position: absolute;width: 40%;height: 30%;left:60%; background: rgba(0, 255, 255, 0.3);}
-.pad_number {position: absolute;width: 20%;height: 30%;left:40%; background: rgba(255, 255, 255);}
-.text{font-size: 14px; text-align: center; font-weight: bold; vertical-align: middle;}
-.joystick {position: absolute;width: 40%;height: 70%;top:30%;background: rgba(0, 255, 255, 0.3);}
-.buttons_menu_start {position: absolute;width: 20%;height: 70%;top:30%;left:40%;}
-.button_select{background: rgba(0, 255, 114, 0.3);height: 50%;position: absolute;width: 100%;}
-.button_start{background: rgb(165, 174, 193);height: 50%;position: absolute;width: 100%;top:50%}
-.buttons_right {position: absolute;width: 40%;height: 70%;top:30%;left:60%;}
-.button_y{background: green;height: 50%; width: 50%; position: absolute;}
-.button_x{background: blue;height: 50%; width: 50%; left: 50%; position: absolute;}
-.button_b{background: yellow;height: 50%; width: 50%; top: 50%; position: absolute;}
-.button_a{background: red;height: 50%; width: 50%; top: 50%; left: 50%; position: absolute;}
-
-.active{background: black}
-
-#warning-message { display: none; }
-@media only screen and (orientation:portrait){
-    #wrapper { display:none; }
-    #warning-message { display:block; }
+.button_lt {
+    position: absolute;
+    width: 20%;
+    height: 30%;
+    border-right: 1px solid white;
 }
-@media only screen and (orientation:landscape){
-    #warning-message { display:none; }
+.button_rt {
+    position: absolute;
+    width: 20%;
+    height: 30%;
+    left: 80%;
+    border-left: 1px solid white;
+}
+.button_lt2 {
+    position: absolute;
+    width: 20%;
+    height: 30%;
+    left: 20%;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+}
+.button_rt2 {
+    position: absolute;
+    width: 20%;
+    height: 30%;
+    left: 60%;
+    border-left: 1px solid white;
+}
+.pad_number {
+    position: absolute;
+    width: 20%;
+    height: 30%;
+    left: 40%;
+    background: rgba(255, 255, 255);
+}
+.text {
+    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+    vertical-align: middle;
+    border-right: 1px solid white;
+}
+.joystick {
+    position: absolute;
+    width: 40%;
+    height: 70%;
+    top: 30%;
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+}
+.buttons_menu_start {
+    position: absolute;
+    width: 20%;
+    height: 70%;
+    top: 30%;
+    left: 40%;
+}
+.button_select {
+    height: 50%;
+    position: absolute;
+    width: 100%;
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+}
+.button_start {
+    height: 50%;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    border-right: 1px solid white;
+    border-top: 1px solid white;
+    border-left: 1px solid white;
+}
+.buttons_right {
+    position: absolute;
+    width: 40%;
+    height: 70%;
+    top: 30%;
+    left: 60%;
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+}
+.button_y {
+    background: green;
+    height: 50%;
+    width: 50%;
+    position: absolute;
+    border-right: 1px solid white;
+}
+.button_x {
+    background: blue;
+    height: 50%;
+    width: 50%;
+    left: 50%;
+    position: absolute;
+}
+.button_b {
+    background: yellow;
+    height: 50%;
+    width: 50%;
+    top: 50%;
+    position: absolute;
+    border-right: 1px solid white;
+    border-top: 1px solid white;
+}
+.button_a {
+    background: red;
+    height: 50%;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    border-top: 1px solid white;
+}
+.active {
+    background: black;
+}
+#warning-message {
+    display: none;
+}
+@media only screen and (orientation:portrait) {
+    #wrapper {
+        display: none;
+    }
+    #warning-message {
+        display: block;
+    }
+}
+@media only screen and (orientation:landscape) {
+    #warning-message {
+        display: none;
+    }
 }

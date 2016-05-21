@@ -29,7 +29,7 @@ $(window).load(function() {
         .on("hello", function(data) {
             var gamePadId = data.inputId;
 
-            $("#padText").html("GamePad<br>" + gamePadId);
+            $("#padText").html("<h1>Nr " + gamePadId + "</h1>");
 
             $(".btn")
                 .off("touchstart touchend")
@@ -127,7 +127,7 @@ $(window).load(function() {
     nipplejs.create({
             zone: document.querySelector('.joystick'),
             mode: 'static',
-            color: 'black',
+            color: 'white',
             position: {
                 left: '50%',
                 top: '50%'

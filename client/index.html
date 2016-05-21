@@ -2,34 +2,38 @@
 <html>
 
 <head>
-  <title>Mobile wifi gamepad for RetroPie</title>
+  <title>Mobile gamepad</title>
+  <link rel="icon" type="image/png" href="/img/favicon_joystick_32.ico" />
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
   <link rel="manifest" href="manifest.json">
   <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" sizes="128x128" href="/img/icon_joystick_128x128.png">
   <link rel="stylesheet" href="css/client.css">
 </head>
 
 <body>
 
   <div id="wrapper">
-    <div class="button_lt btn" id="btnLT" data-code="0x136"><h1>button lt</h1></div>
+    <div class="button_lt btn" id="btnLT" data-code="0x136"><h1>LT</h1></div>
+    <div class="button_lt2 btn" id="btnLT2" data-code="0x138"><h1>LT2</h1></div>
     <div class="pad_number text"><div class="text" id="padText"></div></div>
-    <div class="button_rt btn" id="btnRT" data-code="0x137"><h1>button rt</h1></div>
-    <div class="joystick"><h1>joystick</h1></div>
+    <div class="button_rt2 btn" id="btnRT" data-code="0x139"><h1>RT2</h1></div>
+    <div class="button_rt btn" id="btnRT2" data-code="0x137"><h1>RT</h1></div>
+    <div class="joystick"><h1>JOYSTICK</h1></div>
     <div class="buttons_menu_start">
-      <div class="button_select btn" id="btnSELECT" data-code="0x13a"><h1>select</h1></div>
-      <div class="button_start btn" id="btnSTART" data-code="0x13b"><h1>start</h1></div>
+      <div class="button_select btn" id="btnSELECT" data-code="0x13a"><h1>SELECT</h1></div>
+      <div class="button_start btn" id="btnSTART" data-code="0x13b"><h1>START</h1></div>
     </div>
     <div class="buttons_right">
-      <div class="button_x btn" id="btnX" data-code="0x133"><h1>button x</h1></div>
-      <div class="button_y btn" id="btnY" data-code="0x134"><h1>button y</h1></div>
-      <div class="button_a btn" id="btnA" data-code="0x130"><h1>button a</h1></div>
-      <div class="button_b btn" id="btnB" data-code="0x131"><h1>button b</h1></div>
+      <div class="button_x btn" id="btnX" data-code="0x133"><h1>X</h1></div>
+      <div class="button_y btn" id="btnY" data-code="0x134"><h1>Y</h1></div>
+      <div class="button_a btn" id="btnA" data-code="0x130"><h1>A</h1></div>
+      <div class="button_b btn" id="btnB" data-code="0x131"><h1>B</h1></div>
     </div>
 </div>
 
 <div id="warning-message">
-    this gamepad is only viewable in landscape mode
+    <h1>The gamepad is only viewable in landscape mode!</h1>
 </div>
 
   <script src="/js/jquery-2.2.3.min.js"></script>

@@ -40,6 +40,8 @@ var gamepad = function(inputId) {
                     ioctl(this.fd, uinput.UI_SET_KEYBIT, uinput.BTN_Y);
                     ioctl(this.fd, uinput.UI_SET_KEYBIT, uinput.BTN_TL);
                     ioctl(this.fd, uinput.UI_SET_KEYBIT, uinput.BTN_TR);
+                    ioctl(this.fd, uinput.UI_SET_KEYBIT, uinput.BTN_TL2);
+                    ioctl(this.fd, uinput.UI_SET_KEYBIT, uinput.BTN_TR2);
                     ioctl(this.fd, uinput.UI_SET_KEYBIT, uinput.BTN_START);
                     ioctl(this.fd, uinput.UI_SET_KEYBIT, uinput.BTN_SELECT);
                     ioctl(this.fd, uinput.UI_SET_EVBIT, uinput.EV_ABS);
@@ -97,7 +99,7 @@ var gamepad = function(inputId) {
         sendEvent: function(event) {
 
             if (this.fd) {
-                
+
                 var input_event = Struct()
                     .struct('time', Struct()
                         .word32Sle('tv_sec')
