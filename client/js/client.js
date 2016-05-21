@@ -24,6 +24,10 @@ $(window).load(function() {
     var socket = io();
     socket
         .on("connect", function() {
+            if(!$("#warning-message").is(":visible")) {
+                $("#wrapper").show();
+                $("#disconnect-message").hide();
+            }
             socket.emit('hello', 'add new input');
         })
         .on("hello", function(data) {
@@ -50,6 +54,12 @@ $(window).load(function() {
                     });
                     $(this).removeClass("active");
                 });
+        })
+        .on('disconnect', function() {
+            if(!$("#warning-message").is(":visible")) {
+                $("#wrapper").hide();
+                $("#disconnect-message").show();
+            }
         });
 
     sendEvent = function(type, code, value) {
@@ -150,5 +160,10 @@ $(window).load(function() {
         .on('pressure', function(evt, data) {
             console.log('pressure');
         });
+
+    // Reload page when gamepad is disconnected
+    $("#disconnect-message").click(function() {
+        location.reload();
+    });
 
 });
