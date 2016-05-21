@@ -32,6 +32,12 @@ sudo grunt start
 http://[ip_address_raspberry_pi]:8888
 ```
 
+* Run gamepad in background
+
+```bash
+sudo grunt start > mobile-gamepad.log &
+```
+
 # RetroPie configuration
 
 * Copy config file
