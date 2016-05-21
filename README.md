@@ -32,10 +32,14 @@ sudo grunt start
 http://[ip_address_raspberry_pi]:8888
 ```
 
-* Run gamepad in background
+* Run gamepad in background and enable on startup
 
 ```bash
-sudo grunt start > mobile-gamepad.log &
+# Enable Mobile gamepad on startup
+sudo npm install pm2 -g
+sudo pm2 start app.sh
+sudo pm2 startup
+sudo pm2 save
 ```
 
 # RetroPie configuration
