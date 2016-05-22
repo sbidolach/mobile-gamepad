@@ -26,7 +26,7 @@ npm install
 sudo grunt start
 ```
 
-* Open in mobile browser the below URL
+* Open in mobile browser the below URL (Mobile phone and raspberry have to be in this same network)
 
 ```
 http://[ip_address_raspberry_pi]:8888
@@ -92,10 +92,8 @@ sudo input-events [number]
 
 # TODO
 
-- Display message when gamepad is disconnected [In progress]
-- Simulate mouse (Z Axis, Rotate Z Axis) by moving mobile phone (for Quake, etc.)
+- Simulate mouse (Z Axis, Rotate Z Axis) by moving mobile phone (for Quake, etc.) [In progress]
 - Add second joystick (Z Axis, Rotate Z Axis) to move mouse (for Quake, etc.)
-- TDD
 - Add simple KODI or other installation package
 
 # Development
@@ -104,7 +102,6 @@ sudo input-events [number]
 
 # Problem solving
 
-- No more battery problem in Pad
-- Keep your controll configuration online for different games
+- No more problems with battery in gamepad
 - No more problems with multi-players
-- One Pad use everywhere
+- One gamepad uses everywhere
