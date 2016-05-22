@@ -95,6 +95,7 @@ sudo input-events [number]
 - Simulate mouse (Z Axis, Rotate Z Axis) by moving mobile phone (for Quake, etc.) [In progress]
 - Add second joystick (Z Axis, Rotate Z Axis) to move mouse (for Quake, etc.)
 - Add simple KODI or other installation package
+- Integrate gamepad with LaunchBox
 
 # Development
 
