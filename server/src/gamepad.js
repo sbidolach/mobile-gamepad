@@ -33,6 +33,7 @@ var gamepad = function(inputId) {
 
                     this.fd = fd;
 
+                    // gamepad keys
                     ioctl(this.fd, uinput.UI_SET_EVBIT, uinput.EV_KEY);
                     ioctl(this.fd, uinput.UI_SET_KEYBIT, uinput.BTN_A);
                     ioctl(this.fd, uinput.UI_SET_KEYBIT, uinput.BTN_B);
@@ -44,9 +45,14 @@ var gamepad = function(inputId) {
                     ioctl(this.fd, uinput.UI_SET_KEYBIT, uinput.BTN_TR2);
                     ioctl(this.fd, uinput.UI_SET_KEYBIT, uinput.BTN_START);
                     ioctl(this.fd, uinput.UI_SET_KEYBIT, uinput.BTN_SELECT);
+                    // Joystick
                     ioctl(this.fd, uinput.UI_SET_EVBIT, uinput.EV_ABS);
                     ioctl(this.fd, uinput.UI_SET_ABSBIT, uinput.ABS_X);
                     ioctl(this.fd, uinput.UI_SET_ABSBIT, uinput.ABS_Y);
+                    // Mouse
+                    ioctl(this.fd, uinput.UI_SET_EVBIT, uinput.EV_REL);
+                    ioctl(this.fd, uinput.UI_SET_RELBIT, uinput.REL_X);
+                    ioctl(this.fd, uinput.UI_SET_RELBIT, uinput.REL_Y);
 
                     var input_id = Struct()
                         .word16Ule('bustype')
