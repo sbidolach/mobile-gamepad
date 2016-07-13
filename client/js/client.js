@@ -70,7 +70,7 @@ $(window).load(function() {
         });
     };
 
-    convertDegreeToEvent = function(degree) {
+    convertJoystickDegreeToEvent = function(degree) {
         if (degree > 295 && degree < 335) {
             return 'right:down';
         } else if (degree >= 245 && degree <= 295) {
@@ -90,48 +90,49 @@ $(window).load(function() {
         }
     };
 
-    sendEventToServer = function(event) {
+    sendEventToServer = function(type, event) {
         console.log(event);
         switch (event) {
             case "left":
-                sendEvent(0x03, 0x00, 0);
-                sendEvent(0x03, 0x01, 127);
+                sendEvent(type, 0x00, 0);
+                sendEvent(type, 0x01, 127);
                 break;
             case "left:up":
-                sendEvent(0x03, 0x00, 0);
-                sendEvent(0x03, 0x01, 0);
+                sendEvent(type, 0x00, 0);
+                sendEvent(type, 0x01, 0);
                 break;
             case "left:down":
-                sendEvent(0x03, 0x00, 0);
-                sendEvent(0x03, 0x01, 255);
+                sendEvent(type, 0x00, 0);
+                sendEvent(type, 0x01, 255);
                 break;
             case "right":
-                sendEvent(0x03, 0x00, 255);
-                sendEvent(0x03, 0x01, 127);
+                sendEvent(type, 0x00, 255);
+                sendEvent(type, 0x01, 127);
                 break;
             case "right:up":
-                sendEvent(0x03, 0x00, 255);
-                sendEvent(0x03, 0x01, 0);
+                sendEvent(type, 0x00, 255);
+                sendEvent(type, 0x01, 0);
                 break;
             case "right:down":
-                sendEvent(0x03, 0x00, 255);
-                sendEvent(0x03, 0x01, 255);
+                sendEvent(type, 0x00, 255);
+                sendEvent(type, 0x01, 255);
                 break;
             case "up":
-                sendEvent(0x03, 0x00, 127);
-                sendEvent(0x03, 0x01, 0);
+                sendEvent(type, 0x00, 127);
+                sendEvent(type, 0x01, 0);
                 break;
             case "down":
-                sendEvent(0x03, 0x00, 127);
-                sendEvent(0x03, 0x01, 255);
+                sendEvent(type, 0x00, 127);
+                sendEvent(type, 0x01, 255);
                 break;
             default:
-                sendEvent(0x03, 0x00, 127);
-                sendEvent(0x03, 0x01, 127);
+                sendEvent(type, 0x00, 127);
+                sendEvent(type, 0x01, 127);
         }
     };
 
-    var prevEvent;
+    var prevJoystickEvent;
+    var prevMotionEvent;
 
     // Create Joystick
     nipplejs.create({
@@ -148,17 +149,51 @@ $(window).load(function() {
         .on('end', function(evt, data) {
             // set joystick to default position
             sendEventToServer('end');
-            prevEvent = evt.type;
+            prevJoystickEvent = evt.type;
             // dir:up plain:up dir:left plain:left dir:down plain:down dir:right plain:right || move
         }).on('move', function(evt, data) {
-            var event = convertDegreeToEvent(data.angle.degree);
-            if (event !== prevEvent) {
-                sendEventToServer(event);
-                prevEvent = event;
+            var event = convertJoystickDegreeToEvent(data.angle.degree);
+            if (event !== prevJoystickEvent) {
+                sendEventToServer(0x03, event);
+                prevJoystickEvent = event;
             }
         })
         .on('pressure', function(evt, data) {
             console.log('pressure');
+        });
+
+    var motion_limit_x = 15;
+    var motion_limit_y = 25;
+
+    convertMotionStepsToEvent = function(step_x, step_y) {
+        if (step_y === -15) {
+            return 'down';
+        } else if (step_x === -25) {
+            return 'left';
+        } else if (step_y === 25) {
+            return 'up';
+        } else if (step_x === 15) {
+            return 'right';
+        } else {
+            return 'middle';
+        }
+    };
+
+    motionDevice.create({
+            limit_x: motion_limit_x,
+            limit_y: motion_limit_y
+        }).on('move', function(self, data) {
+
+            var event = convertMotionStepsToEvent(
+                data.step.x,
+                data.step.y
+            );
+
+            if (event !== prevMotionEvent) {
+                // sendEventToServer(0x02, event);
+                prevMotionEvent = event;
+            }
+
         });
 
     // Reload page when gamepad is disconnected
