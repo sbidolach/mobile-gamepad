@@ -132,7 +132,7 @@ $(window).load(function() {
     };
 
     var prevJoystickEvent;
-    var prevMotionEvent;
+    var prevMotionEvent = 'middle';
 
     // Create Joystick
     nipplejs.create({
@@ -190,7 +190,7 @@ $(window).load(function() {
             );
 
             if (event !== prevMotionEvent) {
-                // sendEventToServer(0x02, event);
+                sendEventToServer(0x02, event);
                 prevMotionEvent = event;
             }
 
