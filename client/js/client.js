@@ -166,9 +166,9 @@ $(window).load(function() {
     var motion_limit_y = 25;
 
     convertMotionStepsToEvent = function(step_x, step_y) {
-        if (step_y === -15) {
+        if (step_y === -25) {
             return 'down';
-        } else if (step_x === -25) {
+        } else if (step_x === -15) {
             return 'left';
         } else if (step_y === 25) {
             return 'up';
@@ -176,6 +176,27 @@ $(window).load(function() {
             return 'right';
         } else {
             return 'middle';
+        }
+    };
+
+    sendMotionEventToServer = function(type, event) {
+        console.log(event);
+        switch (event) {
+            case "left":
+                sendEvent(type, 0x00, -25);
+                break;
+            case "right":
+                sendEvent(type, 0x00, 25);
+                break;
+            case "up":
+                sendEvent(type, 0x01, -25);
+                break;
+            case "down":
+                sendEvent(type, 0x01, 25);
+                break;
+            //default:
+            //    sendEvent(type, 0x00, 0);
+            //    sendEvent(type, 0x01, 0);
         }
     };
 
@@ -189,10 +210,7 @@ $(window).load(function() {
                 data.step.y
             );
 
-            if (event !== prevMotionEvent) {
-                sendEventToServer(0x02, event);
-                prevMotionEvent = event;
-            }
+            sendMotionEventToServer(0x02, event);
 
         });
 
