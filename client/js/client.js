@@ -148,7 +148,7 @@ $(window).load(function() {
         // start end
         .on('end', function(evt, data) {
             // set joystick to default position
-            sendEventToServer('end');
+            sendEventToServer(0x03, 'end');
             prevJoystickEvent = evt.type;
             // dir:up plain:up dir:left plain:left dir:down plain:down dir:right plain:right || move
         }).on('move', function(evt, data) {
