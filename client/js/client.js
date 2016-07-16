@@ -210,7 +210,10 @@ $(window).load(function() {
                 data.step.y
             );
 
-            sendMotionEventToServer(0x02, event);
+            if (prevMotionEvent !== event) {
+                sendMotionEventToServer(0x02, event);
+                prevMotionEvent = event
+            }
 
         });
 
