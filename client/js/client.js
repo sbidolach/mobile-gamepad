@@ -132,7 +132,8 @@ $(window).load(function() {
     };
 
     var prevJoystickEvent;
-    var prevMotionEvent = 'middle';
+    var prevEventAxisX = 'middle';
+    var prevEventAxisY = 'middle';
 
     // Create Joystick
     nipplejs.create({
@@ -165,21 +166,29 @@ $(window).load(function() {
     var motion_limit_x = 15;
     var motion_limit_y = 25;
 
-    convertMotionStepsToEvent = function(step_x, step_y) {
-        if (step_y === -25) {
-            return 'down';
-        } else if (step_x === -15) {
-            return 'left';
-        } else if (step_y === 25) {
-            return 'up';
-        } else if (step_x === 15) {
-            return 'right';
-        } else {
-            return 'middle';
+    convertMotionStepsToEventAxisX = function(step_x) {
+        switch (step_x) {
+            case -15:
+                return 'left';
+            case 15:
+                return 'right';
+            default:
+                return 'middle';
         }
     };
 
-    sendMotionEventToServer = function(type, event) {
+    convertMotionStepsToEventAxisY = function(step_y) {
+        switch (step_y) {
+            case -25:
+                return 'down';
+            case 25:
+                return 'up';
+            default:
+                return 'middle';
+        }
+    };
+
+    sendMotionEventAxisX = function(type, event) {
         console.log(event);
         switch (event) {
             case "left":
@@ -188,6 +197,14 @@ $(window).load(function() {
             case "right":
                 sendEvent(type, 0x00, 5);
                 break;
+            default:
+                sendEvent(type, 0x00, 1);
+        }
+    };
+
+    sendMotionEventAxisY = function(type, event) {
+        console.log(event);
+        switch (event) {
             case "up":
                 sendEvent(type, 0x01, -5);
                 break;
@@ -195,7 +212,6 @@ $(window).load(function() {
                 sendEvent(type, 0x01, 5);
                 break;
             default:
-                sendEvent(type, 0x00, 1);
                 sendEvent(type, 0x01, 1);
         }
     };
@@ -205,14 +221,19 @@ $(window).load(function() {
             limit_y: motion_limit_y
         }).on('move', function(self, data) {
 
-            var event = convertMotionStepsToEvent(
-                data.step.x,
-                data.step.y
-            );
+            var eventAxisX = convertMotionStepsToEventAxisX(data.step.x);
+            var eventAxisY = convertMotionStepsToEventAxisY(data.step.y);
 
-            if ((prevMotionEvent !== event && event === "middle") || event !== "middle") {
-                sendMotionEventToServer(0x02, event);
-                prevMotionEvent = event
+            if ((prevEventAxisX !== eventAxisX && eventAxisX === "middle")
+                || eventAxisX !== "middle") {
+                sendMotionEventAxisX(0x02, eventAxisX);
+                prevEventAxisX = eventAxisX;
+            }
+
+            if ((prevEventAxisY !== eventAxisY && eventAxisY === "middle")
+                || eventAxisY !== "middle") {
+                sendMotionEventAxisY(0x02, eventAxisY);
+                prevEventAxisY = eventAxisY;
             }
 
         });
