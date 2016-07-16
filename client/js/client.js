@@ -163,13 +163,13 @@ $(window).load(function() {
             console.log('pressure');
         });
 
-    var motion_limit_x = 15;
-    var motion_limit_y = 25;
+    var motion_limit_x = 10;
+    var motion_limit_y = 15;
 
     convertMotionStepsToEventAxisX = function(step_x) {
-        if (step_x <= -15) {
+        if (step_x <= -10) {
             return 'left';
-        } else if (step_x >= 15) {
+        } else if (step_x >= 10) {
             return 'right';
         }
 
@@ -177,9 +177,9 @@ $(window).load(function() {
     };
 
     convertMotionStepsToEventAxisY = function(step_y) {
-        if (step_y <= -25) {
+        if (step_y <= -15) {
             return 'up';
-        } else if (step_y >= 25) {
+        } else if (step_y >= 15) {
             return 'down';
         }
 
