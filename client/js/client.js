@@ -24,7 +24,7 @@ $(window).load(function() {
     var socket = io();
     socket
         .on("connect", function() {
-            if(!$("#warning-message").is(":visible")) {
+            if (!$("#warning-message").is(":visible")) {
                 $("#wrapper").show();
                 $("#disconnect-message").hide();
             }
@@ -56,7 +56,7 @@ $(window).load(function() {
                 });
         })
         .on('disconnect', function() {
-            if(!$("#warning-message").is(":visible")) {
+            if (!$("#warning-message").is(":visible")) {
                 $("#wrapper").hide();
                 $("#disconnect-message").show();
             }
@@ -167,35 +167,33 @@ $(window).load(function() {
     var motion_limit_y = 25;
 
     convertMotionStepsToEventAxisX = function(step_x) {
-        switch (step_x) {
-            case -15:
-                return 'left';
-            case 15:
-                return 'right';
-            default:
-                return 'middle';
+        if (step_x <== -15) {
+            return 'left';
+        } else if (step_x >== 15) {
+            return 'right';
         }
+
+        return 'middle';
     };
 
     convertMotionStepsToEventAxisY = function(step_y) {
-        switch (step_y) {
-            case -25:
-                return 'down';
-            case 25:
-                return 'up';
-            default:
-                return 'middle';
+        if (step_y <== -25) {
+            return 'up';
+        } else if (step_y >== 25) {
+            return 'down';
         }
+
+        return 'middle';
     };
 
     sendMotionEventAxisX = function(type, event) {
         console.log(event);
         switch (event) {
             case "left":
-                sendEvent(type, 0x00, -5);
+                sendEvent(type, 0x00, -10);
                 break;
             case "right":
-                sendEvent(type, 0x00, 5);
+                sendEvent(type, 0x00, 10);
                 break;
             default:
                 sendEvent(type, 0x00, 1);
@@ -206,10 +204,10 @@ $(window).load(function() {
         console.log(event);
         switch (event) {
             case "up":
-                sendEvent(type, 0x01, -5);
+                sendEvent(type, 0x01, -10);
                 break;
             case "down":
-                sendEvent(type, 0x01, 5);
+                sendEvent(type, 0x01, 10);
                 break;
             default:
                 sendEvent(type, 0x01, 1);
@@ -217,26 +215,26 @@ $(window).load(function() {
     };
 
     motionDevice.create({
-            limit_x: motion_limit_x,
-            limit_y: motion_limit_y
-        }).on('move', function(self, data) {
+        limit_x: motion_limit_x,
+        limit_y: motion_limit_y
+    }).on('move', function(self, data) {
 
-            var eventAxisX = convertMotionStepsToEventAxisX(data.step.x);
-            var eventAxisY = convertMotionStepsToEventAxisY(data.step.y);
+        var eventAxisX = convertMotionStepsToEventAxisX(data.step.x);
+        var eventAxisY = convertMotionStepsToEventAxisY(data.step.y);
 
-            if ((prevEventAxisX !== eventAxisX && eventAxisX === "middle")
-                || eventAxisX !== "middle") {
-                sendMotionEventAxisX(0x02, eventAxisX);
-                prevEventAxisX = eventAxisX;
-            }
+        if ((prevEventAxisX !== eventAxisX && eventAxisX === "middle") ||
+            eventAxisX !== "middle") {
+            sendMotionEventAxisX(0x02, eventAxisX);
+            prevEventAxisX = eventAxisX;
+        }
 
-            if ((prevEventAxisY !== eventAxisY && eventAxisY === "middle")
-                || eventAxisY !== "middle") {
-                sendMotionEventAxisY(0x02, eventAxisY);
-                prevEventAxisY = eventAxisY;
-            }
+        if ((prevEventAxisY !== eventAxisY && eventAxisY === "middle") ||
+            eventAxisY !== "middle") {
+            sendMotionEventAxisY(0x02, eventAxisY);
+            prevEventAxisY = eventAxisY;
+        }
 
-        });
+    });
 
     // Reload page when gamepad is disconnected
     $("#disconnect-message").click(function() {
