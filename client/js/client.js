@@ -210,7 +210,7 @@ $(window).load(function() {
                 data.step.y
             );
 
-            if ((prevMotionEvent !== event && event === "middle") or event !== "middle") {
+            if ((prevMotionEvent !== event && event === "middle") || event !== "middle") {
                 sendMotionEventToServer(0x02, event);
                 prevMotionEvent = event
             }
