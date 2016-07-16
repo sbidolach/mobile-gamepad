@@ -183,16 +183,16 @@ $(window).load(function() {
         console.log(event);
         switch (event) {
             case "left":
-                sendEvent(type, 0x00, -25);
+                sendEvent(type, 0x00, -5);
                 break;
             case "right":
-                sendEvent(type, 0x00, 25);
+                sendEvent(type, 0x00, 5);
                 break;
             case "up":
-                sendEvent(type, 0x01, -25);
+                sendEvent(type, 0x01, -5);
                 break;
             case "down":
-                sendEvent(type, 0x01, 25);
+                sendEvent(type, 0x01, 5);
                 break;
             default:
                 sendEvent(type, 0x00, 1);
@@ -210,7 +210,7 @@ $(window).load(function() {
                 data.step.y
             );
 
-            if (prevMotionEvent !== event) {
+            if (prevMotionEvent !== event && event === "middle") {
                 sendMotionEventToServer(0x02, event);
                 prevMotionEvent = event
             }
