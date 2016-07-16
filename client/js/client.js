@@ -167,9 +167,9 @@ $(window).load(function() {
     var motion_limit_y = 25;
 
     convertMotionStepsToEventAxisX = function(step_x) {
-        if (step_x <== -15) {
+        if (step_x <= -15) {
             return 'left';
-        } else if (step_x >== 15) {
+        } else if (step_x >= 15) {
             return 'right';
         }
 
@@ -177,9 +177,9 @@ $(window).load(function() {
     };
 
     convertMotionStepsToEventAxisY = function(step_y) {
-        if (step_y <== -25) {
+        if (step_y <= -25) {
             return 'up';
-        } else if (step_y >== 25) {
+        } else if (step_y >= 25) {
             return 'down';
         }
 
