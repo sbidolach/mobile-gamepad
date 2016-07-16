@@ -111,11 +111,11 @@ var gamepad = function(inputId) {
                 var input_event = Struct()
                     .struct('time', Struct()
                         // Raspberry Pi
-                        //.word32Sle('tv_sec')
-                        //.word32Sle('tv_usec')
+                        .word32Sle('tv_sec')
+                        .word32Sle('tv_usec')
                         // Ubuntu
-                        .word64Sle('tv_sec')
-                        .word64Sle('tv_usec')
+                        //.word64Sle('tv_sec')
+                        //.word64Sle('tv_usec')
                     )
                     .word16Ule('type')
                     .word16Ule('code')
@@ -133,11 +133,11 @@ var gamepad = function(inputId) {
                 var input_event_end = Struct()
                     .struct('time', Struct()
                         // Raspberry Pi
-                        //.word32Sle('tv_sec')
-                        //.word32Sle('tv_usec')
+                        .word32Sle('tv_sec')
+                        .word32Sle('tv_usec')
                         // Ubuntu
-                        .word64Sle('tv_sec')
-                        .word64Sle('tv_usec')
+                        //.word64Sle('tv_sec')
+                        //.word64Sle('tv_usec')
                     )
                     .word16Ule('type')
                     .word16Ule('code')

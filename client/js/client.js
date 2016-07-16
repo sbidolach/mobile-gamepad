@@ -194,9 +194,9 @@ $(window).load(function() {
             case "down":
                 sendEvent(type, 0x01, 25);
                 break;
-            //default:
-            //    sendEvent(type, 0x00, 0);
-            //    sendEvent(type, 0x01, 0);
+            default:
+                sendEvent(type, 0x00, 1);
+                sendEvent(type, 0x01, 1);
         }
     };
 
