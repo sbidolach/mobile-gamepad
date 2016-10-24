@@ -1,6 +1,6 @@
 # Mobile Gamepad
 
-Mobile Universal Gamepad for RetroPie
+Mobile Universal Gamepad for RetroPie (http://mobilegamepad.net/)
 
 ![MobilaGamepad](/other/resources/schema_mobilegamepad.png)
 
