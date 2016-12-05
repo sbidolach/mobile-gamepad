@@ -26,7 +26,7 @@ npm install
 sudo grunt start
 ```
 
-* Open in mobile browser the below URL (Mobile phone and raspberry have to be in this same network)
+* Open in mobile browser the below URL (Mobile phone and Raspberry Pi have to be on the same network)
 
 ```
 http://[ip_address_raspberry_pi]:8888
@@ -52,7 +52,7 @@ sudo cp /other/retropie/MobileGamePad.cfg /opt/retropie/configs/all/retroarch-jo
 
 # Install application on mobile phone
 
-* Open chrome borwser with url `http://[ip_address_raspberry_pi]:8888`
+* Open chrome browser with url `http://[ip_address_raspberry_pi]:8888`
 * Open chrome menu (right top corner)
 * Select option `Add to home screen`
 * Add application title `MobileGamepad`
