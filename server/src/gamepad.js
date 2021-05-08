@@ -140,8 +140,12 @@ module.exports = class GameController {
             ev_end.time.tv_sec = Math.round(Date.now() / 1000);
             ev_end.time.tv_usec = Math.round(Date.now() % 1000 * 1000);
 
-            console.log('writeSync ev_buffer.length =', ev_buffer.length)
-            console.log('writeSync ev_end_buffer.length =', ev_end_buffer.length)
+            console.log('event.type = ', event.type);
+            console.log('event.code = ', event.code);
+            console.log('event.value = ', event.value);
+
+            console.log('writeSync ev_buffer.length =', ev_buffer.length);
+            console.log('writeSync ev_end_buffer.length =', ev_end_buffer.length);
 
             fs.writeSync(this.fd, ev_buffer, 0, ev_buffer.length);
             fs.writeSync(this.fd, ev_end_buffer, 0, ev_end_buffer.length);
