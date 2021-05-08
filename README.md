@@ -9,9 +9,9 @@ Mobile Universal Gamepad for RetroPie (http://mobilegamepad.net/)
 * Run below installation script
 
 ```bash
-# Install nodejs
+# Install nodejs (tested with nodejs v12.17.0)
 sudo apt-get update && sudo apt-get upgrade
-curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 # Install Grunt Command Line Interface
@@ -76,16 +76,16 @@ sudo apt-get install input-utils
 sudo lsinput
 ```
 
-* Display keyboard mapping of a particular event device
-
-```bash
-sudo input-kbd [number]
-```
-
 * Display input events
 
 ```bash
 sudo input-events [number]
+```
+
+* Display keyboard mapping of a particular event device
+
+```bash
+sudo input-kbd [number]
 ```
 
 ---
@@ -97,11 +97,7 @@ sudo input-events [number]
 - Add simple KODI or other installation package
 - Integrate gamepad with LaunchBox
 
-# Development
-
-- If you would like participate in innovate and interesting project, please contact with me.
-
-# Problem solving
+# Problem solved
 
 - No more problems with battery in gamepad
 - No more problems with multi-players
