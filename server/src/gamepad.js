@@ -11,8 +11,6 @@ module.exports = class GameController {
     }
 
     disconnect () {
-        console.log(`disconnect this.fd = ${this.fd}`)
-
         if (this.fd) {
             ioctl(this.fd, uinput.UI_DEV_DESTROY);
             fs.close(this.fd, err => {
@@ -36,8 +34,6 @@ module.exports = class GameController {
             }
 
             this.fd = fd;
-
-            console.log(`connect this.fd = ${this.fd}`)
 
             ioctl(this.fd, uinput.UI_SET_EVBIT, uinput.EV_KEY);
             ioctl(this.fd, uinput.UI_SET_KEYBIT, uinput.BTN_A);
@@ -93,7 +89,6 @@ module.exports = class GameController {
                     console.log(err);
                     throw (err);
                 } else {
-                    console.log(`write this.fd = ${this.fd}`)
                     ioctl(this.fd, uinput.UI_DEV_CREATE);
                 }
             });
@@ -139,13 +134,6 @@ module.exports = class GameController {
             ev_end.value = 0;
             ev_end.time.tv_sec = Math.round(Date.now() / 1000);
             ev_end.time.tv_usec = Math.round(Date.now() % 1000 * 1000);
-
-            console.log('event.type = ', event.type);
-            console.log('event.code = ', event.code);
-            console.log('event.value = ', event.value);
-
-            console.log('writeSync ev_buffer.length =', ev_buffer.length);
-            console.log('writeSync ev_end_buffer.length =', ev_end_buffer.length);
 
             fs.writeSync(this.fd, ev_buffer, 0, ev_buffer.length);
             fs.writeSync(this.fd, ev_end_buffer, 0, ev_end_buffer.length);

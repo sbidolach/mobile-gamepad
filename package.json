@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "http": "0.0.1-security",
     "ioctl": "git+https://github.com/mk-pmb/node-ioctl.git",
     "nipplejs": "^0.9.0",
     "socket.io": "^4.0.2",
