@@ -1,5 +1,5 @@
 var config = require('../../config/config');
-var gameController = require('./gamepad');
+var GameController = require('./gamepad');
 
 var gamehub = function(){
 
@@ -20,7 +20,7 @@ var gamehub = function(){
         /// find free slot
         for(var i=1; i <= config.padLimit; i++){
           if(this.gamepads[i] === undefined){
-            this.gamepads[i] = new gameController(i);
+            this.gamepads[i] = new GameController(i);
             this.gamepads[i].connect();
             return callback(i);
           }
