@@ -3,9 +3,11 @@
   "version": "0.0.2",
   "description": "Mobile wifi gamepad for RetroPie",
   "author": "contact@softwarelondon.net",
+  "engines": {
+    "node": ">=12.0.0"
+  },
   "dependencies": {
     "express": "^4.17.1",
-    "fs": "0.0.1-security",
     "http": "0.0.1-security",
     "ioctl": "git+https://github.com/mk-pmb/node-ioctl.git",
     "nipplejs": "^0.9.0",
