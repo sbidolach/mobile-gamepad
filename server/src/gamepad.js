@@ -91,9 +91,9 @@ module.exports = class GameController {
                 } else {
                     ioctl(this.fd, uinput.UI_DEV_CREATE);
                 }
-            }).bind(this);
+            });
 
-        }).bind(this);
+        });
 
     }
 
