@@ -15,7 +15,11 @@ module.exports = class GameController {
 
         if (this.fd) {
             ioctl(this.fd, uinput.UI_DEV_DESTROY);
-            fs.close(this.fd);
+            fs.close(this.fd, err => {
+                if (err) {
+                    console.err('error to close file', err)
+                }
+            });
             this.fd = undefined;
         }
 
@@ -84,11 +88,12 @@ module.exports = class GameController {
             uidev.absfuzz[uinput.ABS_Y] = 0;
             uidev.absflat[uinput.ABS_Y] = 15;
 
-            fs.write(fd, buffer, 0, buffer.length, null, (err, written, buffer) => {
+            fs.write(fd, buffer, 0, buffer.length, (err, written, buffer) => {
                 if (err) {
                     console.log(err);
                     throw (err);
                 } else {
+                    console.log(`write this.fd = ${this.fd}`)
                     ioctl(this.fd, uinput.UI_DEV_CREATE);
                 }
             });
@@ -135,8 +140,11 @@ module.exports = class GameController {
             ev_end.time.tv_sec = Math.round(Date.now() / 1000);
             ev_end.time.tv_usec = Math.round(Date.now() % 1000 * 1000);
 
-            fs.writeSync(this.fd, ev_buffer, 0, ev_buffer.length, null);
-            fs.writeSync(this.fd, ev_end_buffer, 0, ev_end_buffer.length, null);
+            console.log('writeSync ev_buffer.length =', ev_buffer.length)
+            console.log('writeSync ev_end_buffer.length =', ev_end_buffer.length)
+
+            fs.writeSync(this.fd, ev_buffer, 0, ev_buffer.length);
+            fs.writeSync(this.fd, ev_end_buffer, 0, ev_end_buffer.length);
 
             return null;
         }
