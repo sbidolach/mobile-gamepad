@@ -47,7 +47,7 @@ sudo pm2 save
 * Copy config file
 
 ```bash
-sudo cp /other/retropie/MobileGamePad.cfg /opt/retropie/configs/all/retroarch-joypads/
+sudo cp other/retropie/MobileGamePad.cfg /opt/retropie/configs/all/retroarch-joypads/
 ```
 
 # Install application on mobile phone
